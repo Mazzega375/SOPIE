@@ -35,14 +35,14 @@ body {
     background: #c8c8c8;
 }
 
-/* Página de períodos */
-.grid-periodos {
+/* Página de professores */
+.grid-professor {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
 }
 
-.card-periodo {
+.card-professor {
     border: 1.5px solid #3333aa;
     border-radius: 4px;
     padding: 40px 24px;
@@ -55,10 +55,10 @@ body {
     background: #fff;
 }
 
-.card-periodo:nth-child(2n) {
+.card-professor:nth-child(2n) {
     border-color: #aa3333;
 }
 
-.card-periodo:hover {
+.card-professor:hover {
     background: #f5f5f5;
 }
