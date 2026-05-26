@@ -10,6 +10,7 @@ body {
     padding: 24px;
 }
 
+/* Botão de voltar */
 .btn-voltar {
     display: inline-flex;
     align-items: center;
@@ -51,7 +52,7 @@ body {
 
 .card-curso:hover {
     background: #2972fa;
-    color:aliceblue
+    color: aliceblue
 }
 
 /* Página de professores */
@@ -76,8 +77,8 @@ body {
 }
 
 .card-professor:hover {
-     background: #2972fa;
-    color:aliceblue
+    background: #2972fa;
+    color: aliceblue
 }
 
 
