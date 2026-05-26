@@ -10,6 +10,24 @@ body {
     padding: 24px;
 }
 
+.btn-voltar {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 24px;
+    font-size: 14px;
+    color: #2972fa;
+    text-decoration: none;
+    padding: 6px 12px;
+    border: 1px solid #2972fa;
+    border-radius: 6px;
+}
+
+.btn-voltar:hover {
+    background: #2972fa;
+    color: #fff;
+}
+
 /* Página principal */
 .grid-cursos {
     display: grid;
@@ -32,7 +50,8 @@ body {
 }
 
 .card-curso:hover {
-    background: #c8c8c8;
+    background: #2972fa;
+    color:aliceblue
 }
 
 /* Página de professores */
@@ -57,7 +76,8 @@ body {
 }
 
 .card-professor:hover {
-     background: #c8c8c8;
+     background: #2972fa;
+    color:aliceblue
 }
 
 
