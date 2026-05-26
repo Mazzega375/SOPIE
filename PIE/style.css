@@ -137,12 +137,12 @@ body {
 
 .campo input:focus,
 .campo select:focus {
-    border-color: #3333aa;
+    border-color: #2972fa;
 }
 
 button {
     padding: 12px;
-    background: #3333aa;
+    background: #2972fa;
     color: #fff;
     border: none;
     border-radius: 6px;
@@ -152,5 +152,5 @@ button {
 }
 
 button:hover {
-    background: #222288;
+    background: #2972fa;
 }
