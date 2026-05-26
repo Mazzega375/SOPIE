@@ -1,11 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>SOP - Login</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    
+
+    <div class="login-container">
+
+        <p class="login-subtitulo">Sistema de Organização de PIE</p>
+
+        <div class="login-card">
+            <div class="campo">
+                <label for="usuario">usuario</label>
+                <input type="text" id="usuario" placeholder="Usuário">
+            </div>
+
+            <div class="campo">
+                <label for="senha">Senha</label>
+                <input type="password" id="senha" placeholder="Senha">
+            </div>
+
+            <div class="campo">
+                <label for="perfil">Perfil</label>
+                <select id="perfil">
+                    <option value="">Selecione...</option>
+                    <option value="professor">Professor</option>
+                    <option value="organizador">Organizador</option>
+                </select>
+            </div>
+
+            <button onclick="entrar()">Entrar</button>
+        </div>
+    </div>
+
+    <script>
+        function entrar() {
+            const usuario = document.getElementById('usuario').value;
+            const senha = document.getElementById('senha').value;
+            const perfil = document.getElementById('perfil').value;
+
+            if (!usuario || !senha || !perfil) {
+                alert('Preencha todos os campos.');
+                return;
+            }
+
+            window.location.href = 'index.html';
+        }
+    </script>
+
 </body>
+
 </html>
