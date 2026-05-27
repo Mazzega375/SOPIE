@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOP - Login</title>
     <link rel="stylesheet" href="../style.css">
+    <script src="../script.js"></script>
 </head>
 
 <body>
@@ -37,20 +38,8 @@
         </div>
     </div>
 
-    <script>
-        function entrar() {
-            const usuario = document.getElementById('usuario').value;
-            const senha = document.getElementById('senha').value;
-            const perfil = document.getElementById('perfil').value;
+    <a href="professores/index.html" class="card-curso">Administração</a>
 
-            if (!usuario || !senha || !perfil) {
-                alert('Preencha todos os campos.');
-                return;
-            }
-
-            window.location.href = 'index.html';
-        }
-    </script>
 
 </body>
 
