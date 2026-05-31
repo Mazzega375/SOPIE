@@ -160,12 +160,6 @@ body>* {
     margin-bottom: 4px;
 }
 
-/* Subtítulo opcional do login */
-.login-subtitle {
-    color: var(--muted);
-    line-height: 1.8;
-}
-
 /* Layout dos campos do formulário */
 .campo {
     display: flex;
