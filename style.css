@@ -1,150 +1,252 @@
+/* Global reset: garante padding/margin zero e box-sizing legível */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+/* Variáveis de cor para manter estilos consistentes */
+:root {
+    color-scheme: dark light;
+    --bg: #eef4ff;
+    --surface: rgba(255, 255, 255, 0.94);
+    --surface-strong: #ffffff;
+    --border: rgba(100, 116, 139, 0.16);
+    --text: #1f2937;
+    --muted: #475569;
+    --primary: #2563eb;
+    --primary-soft: #eff6ff;
+    --shadow: 0 24px 80px rgba(15, 23, 42, 0.08);
+}
+
+/* Suaviza a rolagem da página */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Estilo base do corpo da página */
 body {
-    font-family: sans-serif;
-    background: #fff;
+    min-height: 100vh;
+    font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    background: radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 24%),
+        radial-gradient(circle at bottom right, rgba(59, 130, 246, 0.14), transparent 18%),
+        linear-gradient(180deg, #f8fbff 0%, #eef4ff 45%, #ffffff 100%);
+    color: var(--text);
+    padding: 32px;
+}
+
+/* Garante que filhos diretos não cresçam de forma inesperada */
+body>* {
+    min-height: 0;
+}
+
+/* Container principal usado em páginas de conteúdo */
+.page-shell {
+    max-width: 1120px;
+    margin: 0 auto;
     padding: 24px;
+}
+
+/* Cabeçalho da página com título e descrição */
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+/* Título principal responsivo */
+.page-header h1 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    letter-spacing: -0.03em;
+}
+
+/* Texto descritivo abaixo do título */
+.description {
+    max-width: 680px;
+    color: var(--muted);
+    line-height: 1.7;
+}
+
+/* Grades flexíveis para cards de cursos e professores */
+.grid-cursos,
+.grid-professor {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+}
+
+/* Estilo base para cards de curso e professor */
+.card-curso,
+.card-professor {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    min-height: 120px;
+    padding: 28px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    transition: transform 0.24s ease, box-shadow 0.24s ease, border-color 0.24s ease, background-color 0.24s ease;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+/* Efeito hover para cards */
+.card-curso:hover,
+.card-professor:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 26px 60px rgba(15, 23, 42, 0.12);
+    border-color: rgba(37, 99, 235, 0.24);
+    background: #f8fbff;
+    color: #0f172a;
 }
 
 /* Botão de voltar */
 .btn-voltar {
     display: inline-flex;
     align-items: center;
-    gap: 6px;
-    margin-bottom: 24px;
-    font-size: 14px;
-    color: #2972fa;
-    text-decoration: none;
-    padding: 6px 12px;
-    border: 1px solid #2972fa;
-    border-radius: 6px;
-}
-
-.btn-voltar:hover {
-    background: #2972fa;
-    color: #fff;
-}
-
-/* Página principal */
-.grid-cursos {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.card-curso {
-    background: #d9d9d9;
-    border-radius: 8px;
-    padding: 40px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
-    font-size: 16px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-}
-
-.card-curso:hover {
-    background: #2972fa;
-    color: aliceblue
-}
-
-/* Página de professores */
-.grid-professor {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 24px;
-}
-
-.card-professor {
-    background: #d9d9d9;
-    border-radius: 8px;
-    padding: 40px 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100px;
-    font-size: 16px;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
-}
-
-.card-professor:hover {
-    background: #2972fa;
-    color: aliceblue
-}
-
-
-/* Login */
-.login-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
     gap: 8px;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    color: var(--primary);
+    text-decoration: none;
+    background: rgba(239, 246, 255, 0.8);
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    font-weight: 600;
+    width: fit-content;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
-.login-titulo {
-    font-size: 32px;
-    font-weight: 700;
-    color: #333;
+/* Hover do botão de voltar */
+.btn-voltar:hover {
+    transform: translateY(-1px);
+    background: #eff6ff;
+    border-color: rgba(37, 99, 235, 0.5);
 }
 
+/* Container de login centralizado */
+.login-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Cartão de login com borda suave e sombra */
 .login-card {
-    background: #f5f5f5;
-    border-radius: 12px;
-    padding: 32px;
     width: 100%;
-    max-width: 360px;
+    max-width: 420px;
+    background: rgba(255, 255, 255, 0.94);
+    border: 1px solid rgba(148, 163, 184, 0.16);
+    border-radius: 28px;
+    padding: 34px 32px;
+    box-shadow: 0 28px 80px rgba(15, 23, 42, 0.08);
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 20px;
 }
 
+/* Título da página de login */
+.login-titulo {
+    font-size: 2rem;
+    line-height: 1.05;
+    margin-bottom: 4px;
+}
+
+/* Subtítulo opcional do login */
+.login-subtitle {
+    color: var(--muted);
+    line-height: 1.8;
+}
+
+/* Layout dos campos do formulário */
 .campo {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
 }
 
+/* Rótulo do campo */
 .campo label {
-    font-size: 14px;
-    color: #555;
+    font-size: 0.95rem;
+    color: var(--muted);
 }
 
+/* Inputs e select do formulário */
 .campo input,
 .campo select {
-    padding: 10px 12px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 15px;
-    outline: none;
+    width: 100%;
+    border: 1px solid rgba(148, 163, 184, 0.25);
+    border-radius: 14px;
+    background: #ffffff;
+    padding: 14px 16px;
+    font-size: 1rem;
+    color: var(--text);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
+/* Foco em campos de formulário */
 .campo input:focus,
 .campo select:focus {
-    border-color: #2972fa;
+    outline: none;
+    border-color: rgba(37, 99, 235, 0.6);
+    box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
 }
 
+/* Botão principal */
 button {
-    padding: 12px;
-    background: #2972fa;
-    color: #fff;
+    width: 100%;
+    padding: 14px 18px;
     border: none;
-    border-radius: 6px;
-    font-size: 15px;
+    border-radius: 14px;
+    background: var(--primary);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: 700;
     cursor: pointer;
-    margin-top: 4px;
+    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.2);
 }
 
+/* Hover do botão */
 button:hover {
-    background: #2972fa;
+    transform: translateY(-1px);
+    filter: brightness(1.05);
+}
+
+/* Estado ativo do botão */
+button:active {
+    transform: translateY(0);
+}
+
+/* Responsividade para dispositivos menores */
+@media (max-width: 640px) {
+    body {
+        padding: 20px;
+    }
+
+    .page-shell {
+        padding: 0;
+    }
+
+    .page-header {
+        align-items: flex-start;
+    }
+
+    .card-curso,
+    .card-professor {
+        min-height: 110px;
+        padding: 24px;
+    }
+
+    .login-card {
+        padding: 28px 20px;
+    }
 }
