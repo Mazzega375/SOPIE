@@ -194,25 +194,30 @@ body>* {
     box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.12);
 }
 
-/* Botão principal */
+/* Botão login - mesmo estilo do botão de voltar */
 button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
     width: 100%;
-    padding: 14px 18px;
-    border: none;
-    border-radius: 14px;
-    background: var(--primary);
-    color: #ffffff;
+    padding: 12px 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(37, 99, 235, 0.25);
+    background: rgba(239, 246, 255, 0.8);
+    color: var(--primary);
     font-size: 1rem;
-    font-weight: 700;
+    font-weight: 600;
     cursor: pointer;
-    transition: transform 0.2s ease, filter 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 18px 40px rgba(37, 99, 235, 0.2);
+    transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+    box-shadow: 0 10px 30px rgba(15, 23, 42, 0.05);
 }
 
 /* Hover do botão */
 button:hover {
     transform: translateY(-1px);
-    filter: brightness(1.05);
+    background: #eff6ff;
+    border-color: rgba(37, 99, 235, 0.5);
 }
 
 /* Estado ativo do botão */
