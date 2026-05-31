@@ -8,5 +8,16 @@ function entrar() {
         return;
     }
 
-    window.location.href = '../organizadores/index.html';
+
+    if (perfil === 'organizador') {
+
+
+        window.location.href = '../organizadores/index.html';
+    }
+
+
+    else if (perfil === 'professor') {
+        window.location.href = '../professores/index.html';
+    }
+
 }
