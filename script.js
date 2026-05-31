@@ -8,5 +8,5 @@ function entrar() {
         return;
     }
 
-    window.location.href = '../index.html';
+    window.location.href = '../organizadores/index.html';
 }
