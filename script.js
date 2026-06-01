@@ -17,7 +17,7 @@ function entrar() {
 
 
     else if (perfil === 'professor') {
-        window.location.href = '../professores/index.html';
+        window.location.href = '../pagprofessores/index.html';
     }
 
 }
