@@ -31,7 +31,41 @@ function criarprojeto() {
         alert('Preencha todos os campos.');
         return;
     }
-    else {
-        alert('Projeto criado com sucesso!');
+
+    const projeto = {
+        nome: nomprojeto,
+        descricao: descproj,
+        professor: professores,
+        data: new Date().toLocaleDateString('pt-BR')
+    };
+
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
+    projetos.push(projeto);
+    localStorage.setItem('projetos', JSON.stringify(projetos));
+
+    alert('Projeto criado com sucesso!');
+    window.location.href = '../../pagprofessores/index.html';
+}
+
+function listarProjetos() {
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
+    const lista = document.getElementById('lista-projetos');
+
+    if (!lista) return;
+
+    if (projetos.length === 0) {
+        lista.innerHTML = '<p>Nenhum projeto criado ainda.</p>';
+    } else {
+        projetos.forEach(p => {
+            lista.innerHTML += `
+                <div class="card-curso" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <strong>${p.nome}</strong>
+                    <span style="font-size:13px; color:#555;">${p.descricao}</span>
+                    <span style="font-size:12px; color:#888;">Professor: ${p.professor} · ${p.data}</span>
+                </div>
+            `;
+        });
     }
 }
+
+listarProjetos();
