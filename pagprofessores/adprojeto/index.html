@@ -11,25 +11,26 @@
 <body>
 
     <a href="../../pagprofessores/index.html" class="btn-voltar">Voltar</a>
+    <h1>
+        <div class="campo">
+            <label for="nomprojeto">Nome do Projeto</label>
+            <input type="text" id="nomprojeto" placeholder="Digite o nome do projeto">
+        </div>
 
-    <div class="campo">
-        <label for="nomprojeto">Nome do Projeto</label>
-        <input type="text" id="nomprojeto" placeholder="Digite o nome do projeto">
-    </div>
+        <div class="campo">
+            <label for="descproj">Descrição</label>
+            <input type="text" id="descproj" placeholder="Digite a descrição do projeto">
+        </div>
 
-    <div class="campo">
-        <label for="descproj">Descrição</label>
-        <input type="text" id="descproj" placeholder="Digite a descrição do projeto">
-    </div>
-
-    <div class="campo">
-        <label for="professores">Professores</label>
-        <select id="professores">
-            <option value="">Selecione...</option>
-            <option value="professor">Exemplo prof1</option>
-            <option value="organizador">Exemplo prof2</option>
-        </select>
-    </div>
+        <div class="campo">
+            <label for="professores">Professores</label>
+            <select id="professores">
+                <option value="">Selecione...</option>
+                <option value="professor">Exemplo prof1</option>
+                <option value="organizador">Exemplo prof2</option>
+            </select>
+        </div>
+    </h1>
 
     <br>
     <button type="button" onclick="criarprojeto()">Criar Projeto</button>
