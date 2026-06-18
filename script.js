@@ -116,7 +116,7 @@ function carregarEdicao() {
 
 function carregarEdicao() {
     if (!window.location.href.includes('editarprojeto')) return;
-    
+
     const index = localStorage.getItem('editIndex');
     const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
     const p = projetos[index];
