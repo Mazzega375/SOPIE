@@ -54,7 +54,7 @@ function listarProjetos() {
     if (!lista) return;
 
     if (projetos.length === 0) {
-       
+        lista.innerHTML = '<p>Nenhum projeto criado ainda.</p>';
     } else {
         projetos.forEach(p => {
             lista.innerHTML += `
