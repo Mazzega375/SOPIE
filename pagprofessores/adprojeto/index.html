@@ -1,15 +1,40 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SOPIE - Adicionar Projeto</title>
     <link rel="stylesheet" href="../../style.css">
 </head>
-<body>
-    
-<a href="../../pagprofessores/index.html" class="btn-voltar">Voltar</a>
 
+<body>
+
+    <a href="../../pagprofessores/index.html" class="btn-voltar">Voltar</a>
+
+    <div class="campo">
+        <label for="nomprojeto">Nome do Projeto</label>
+        <input type="text" id="nomprojeto" placeholder="Digite o nome do projeto">
+    </div>
+
+    <div class="campo">
+        <label for="descproj">Descrição</label>
+        <input type="text" id="descproj" placeholder="Digite a descrição do projeto">
+    </div>
+
+    <div class="campo">
+        <label for="professores">Professores</label>
+        <select id="professores">
+            <option value="">Selecione...</option>
+            <option value="professor">Exemplo prof1</option>
+            <option value="organizador">Exemplo prof2</option>
+        </select>
+    </div>
+
+    <br>
+    <button type="button" onclick="criarprojeto()">Criar Projeto</button>
+    <br>
 
 </body>
+
 </html>
