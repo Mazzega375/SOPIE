@@ -8,18 +8,11 @@ function entrar() {
         return;
     }
 
-
     if (perfil === 'organizador') {
-
-
         window.location.href = '../organizadores/index.html';
-    }
-
-
-    else if (perfil === 'professor') {
+    } else if (perfil === 'professor') {
         window.location.href = '../pagprofessores/index.html';
     }
-
 }
 
 function criarprojeto() {
@@ -56,9 +49,9 @@ function listarProjetos() {
     if (projetos.length === 0) {
         lista.innerHTML = '<p>Nenhum projeto criado ainda.</p>';
     } else {
-        projetos.forEach(p => {
+        projetos.forEach((p, index) => {
             lista.innerHTML += `
-                <div class="card-curso" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                <div class="card-curso" style="flex-direction: column; align-items: flex-start; gap: 6px; cursor: pointer;" onclick="irEditar(${index})">
                     <strong>${p.nome}</strong>
                     <span style="font-size:13px; color:#555;">${p.descricao}</span>
                     <span style="font-size:12px; color:#888;">Professor: ${p.professor} · ${p.data}</span>
@@ -68,4 +61,72 @@ function listarProjetos() {
     }
 }
 
+function irEditar(index) {
+    localStorage.setItem('editIndex', index);
+    window.location.href = 'editarprojeto/index.html';
+}
+
+function salvareditar() {
+    const index = localStorage.getItem('editIndex');
+    const nomprojeto = document.getElementById('nomprojeto').value;
+    const descproj = document.getElementById('descproj').value;
+    const professores = document.getElementById('professores').value;
+
+    if (!nomprojeto || !descproj || !professores) {
+        alert('Preencha todos os campos.');
+        return;
+    }
+
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
+    projetos[index] = {
+        nome: nomprojeto,
+        descricao: descproj,
+        professor: professores,
+        data: projetos[index].data
+    };
+
+    localStorage.setItem('projetos', JSON.stringify(projetos));
+    alert('Projeto atualizado!');
+    window.location.href = '../pagprofessores/index.html';
+}
+
+function excluirprojeto() {
+    const index = localStorage.getItem('editIndex');
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
+
+    if (confirm('Tem certeza que deseja excluir este projeto?')) {
+        projetos.splice(index, 1);
+        localStorage.setItem('projetos', JSON.stringify(projetos));
+        alert('Projeto excluído!');
+        window.location.href = '../../pagprofessores/index.html';
+    }
+}
+
+function carregarEdicao() {
+    const index = localStorage.getItem('editIndex');
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
+    const p = projetos[index];
+
+    if (!p) return;
+
+    document.getElementById('nomprojeto').value = p.nome;
+    document.getElementById('descproj').value = p.descricao;
+    document.getElementById('professores').value = p.professor;
+}
+
+function carregarEdicao() {
+    if (!window.location.href.includes('editarprojeto')) return;
+    
+    const index = localStorage.getItem('editIndex');
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
+    const p = projetos[index];
+
+    if (!p) return;
+
+    document.getElementById('nomprojeto').value = p.nome;
+    document.getElementById('descproj').value = p.descricao;
+    document.getElementById('professores').value = p.professor;
+}
+
 listarProjetos();
+carregarEdicao();
