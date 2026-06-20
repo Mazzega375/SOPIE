@@ -87,7 +87,7 @@ function salvareditar() {
 
     localStorage.setItem('projetos', JSON.stringify(projetos));
     alert('Projeto atualizado!');
-    window.location.href = '../pagprofessores/index.html';
+    window.location.href = '../../../pagprofessores/index.html';
 }
 
 function excluirprojeto() {
