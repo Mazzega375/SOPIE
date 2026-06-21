@@ -165,6 +165,24 @@ function carregarProfessores() {
     }
 }
 
+function popularProfessores() {
+    const select = document.getElementById('professores');
+    if (!select) return;
+
+    const todosProfessores = [
+        'Ebert', 'Vitor', 'Alexandre', 'Fabricio Vasconcelos'
+        // adiciona os outros professores aqui //
+    ];
+
+    todosProfessores.forEach(nome => {
+        const option = document.createElement('option');
+        option.value = nome;
+        option.textContent = nome;
+        select.appendChild(option);
+    });
+}
+
+popularProfessores();
 carregarProfessores();
 listarProjetos();
 carregarEdicao();
