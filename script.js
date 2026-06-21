@@ -128,5 +128,43 @@ function carregarEdicao() {
     document.getElementById('professores').value = p.professor;
 }
 
+function carregarProfessores() {
+    const lista = document.getElementById('lista-professores');
+    if (!lista) return;
+
+    const params = new URLSearchParams(window.location.search);
+    const curso = params.get('curso');
+
+    if (curso) {
+        document.getElementById('titulo-curso').textContent = curso;
+    }
+
+    const professoresPorCurso = {
+        'TI': ['Ebert', 'Vitor', 'Alexandre'],
+        'Administração': ['Fabricio Vasconcelos'],
+        'Arquitetura': [],
+        'Biomedicina': [],
+        'Ciências Contábeis': [],
+        'Direito': [],
+        'Educação Física': [],
+        'Enfermagem': [],
+        'Farmácia': [],
+        'Medicina': [],
+        'Nutrição': [],
+        'Psicologia': [],
+    };
+
+    const profs = professoresPorCurso[curso] || [];
+
+    if (profs.length === 0) {
+        lista.innerHTML = '<p>Nenhum professor encontrado.</p>';
+    } else {
+        profs.forEach(nome => {
+            lista.innerHTML += `<div class="card-professor">${nome}</div>`;
+        });
+    }
+}
+
+carregarProfessores();
 listarProjetos();
 carregarEdicao();
