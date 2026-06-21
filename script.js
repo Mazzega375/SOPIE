@@ -41,10 +41,10 @@ function criarprojeto() {
 }
 
 function listarProjetos() {
-    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
     const lista = document.getElementById('lista-projetos');
-
     if (!lista) return;
+
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
 
     if (projetos.length === 0) {
         lista.innerHTML = '<p>Nenhum projeto criado ainda.</p>';
@@ -103,18 +103,6 @@ function excluirprojeto() {
 }
 
 function carregarEdicao() {
-    const index = localStorage.getItem('editIndex');
-    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
-    const p = projetos[index];
-
-    if (!p) return;
-
-    document.getElementById('nomprojeto').value = p.nome;
-    document.getElementById('descproj').value = p.descricao;
-    document.getElementById('professores').value = p.professor;
-}
-
-function carregarEdicao() {
     if (!window.location.href.includes('editarprojeto')) return;
 
     const index = localStorage.getItem('editIndex');
@@ -160,7 +148,45 @@ function carregarProfessores() {
         lista.innerHTML = '<p>Nenhum professor encontrado.</p>';
     } else {
         profs.forEach(nome => {
-            lista.innerHTML += `<div class="card-professor">${nome}</div>`;
+            lista.innerHTML += `
+                <div class="card-professor" style="cursor:pointer;" onclick="irProjetos('${nome}', '${curso}')">
+                    ${nome}
+                </div>
+            `;
+        });
+    }
+}
+
+function irProjetos(professor, curso) {
+    localStorage.setItem('profSelecionado', professor);
+    localStorage.setItem('cursoSelecionado', curso);
+    window.location.href = '../projetoprofessores/index.html';
+}
+
+function carregarProjetosProfessor() {
+    const lista = document.getElementById('lista-projetos-professor');
+    if (!lista) return;
+
+    const professor = localStorage.getItem('profSelecionado');
+
+    if (professor) {
+        document.getElementById('titulo-professor').textContent = professor;
+    }
+
+    const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
+    const filtrados = projetos.filter(p => p.professor === professor);
+
+    if (filtrados.length === 0) {
+        lista.innerHTML = '<p>Nenhum projeto cadastrado para este professor.</p>';
+    } else {
+        filtrados.forEach(p => {
+            lista.innerHTML += `
+                <div class="card-professor" style="flex-direction: column; align-items: flex-start; gap: 6px;">
+                    <strong>${p.nome}</strong>
+                    <span style="font-size:13px; color:#555;">${p.descricao}</span>
+                    <span style="font-size:12px; color:#888;">${p.data}</span>
+                </div>
+            `;
         });
     }
 }
@@ -171,7 +197,6 @@ function popularProfessores() {
 
     const todosProfessores = [
         'Ebert', 'Vitor', 'Alexandre', 'Fabricio Vasconcelos'
-        // adiciona os outros professores aqui //
     ];
 
     todosProfessores.forEach(nome => {
@@ -184,5 +209,6 @@ function popularProfessores() {
 
 popularProfessores();
 carregarProfessores();
+carregarProjetosProfessor();
 listarProjetos();
 carregarEdicao();
