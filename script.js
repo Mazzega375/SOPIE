@@ -127,6 +127,8 @@ function carregarProfessores() {
         document.getElementById('titulo-curso').textContent = curso;
     }
 
+
+    //Nome dos professores por curso, na tabela com nome das materias//
     const professoresPorCurso = {
         'TI': ['Ebert', 'Vitor', 'Alexandre'],
         'Administração': ['Fabricio Vasconcelos'],
@@ -195,6 +197,8 @@ function popularProfessores() {
     const select = document.getElementById('professores');
     if (!select) return;
 
+
+// selecionar os professores disponíveis para o select //
     const todosProfessores = [
         'Ebert', 'Vitor', 'Alexandre', 'Fabricio Vasconcelos'
     ];
