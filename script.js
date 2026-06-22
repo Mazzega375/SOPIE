@@ -17,16 +17,22 @@ function entrar() {
 
 function criarprojeto() {
     const nomprojeto = document.getElementById('nomprojeto').value;
+    const lidergrupo = document.getElementById('lidergrupo').value;
+    const grupo = document.getElementById('grupo').value;
+    const orientador = document.getElementById('orientador').value;
     const descproj = document.getElementById('descproj').value;
     const professores = document.getElementById('professores').value;
 
-    if (!nomprojeto || !descproj || !professores) {
+    if (!nomprojeto || !lidergrupo || !grupo || !orientador || !descproj || !professores) {
         alert('Preencha todos os campos.');
         return;
     }
 
     const projeto = {
         nome: nomprojeto,
+        lider: lidergrupo,
+        grupo: grupo,
+        orientador: orientador,
         descricao: descproj,
         professor: professores,
         data: new Date().toLocaleDateString('pt-BR')
@@ -69,10 +75,13 @@ function irEditar(index) {
 function salvareditar() {
     const index = localStorage.getItem('editIndex');
     const nomprojeto = document.getElementById('nomprojeto').value;
+    const lidergrupo = document.getElementById('lidergrupo').value;
+    const grupo = document.getElementById('grupo').value;
+    const orientador = document.getElementById('orientador').value;
     const descproj = document.getElementById('descproj').value;
     const professores = document.getElementById('professores').value;
 
-    if (!nomprojeto || !descproj || !professores) {
+    if (!nomprojeto || !lidergrupo || !grupo || !orientador || !descproj || !professores) {
         alert('Preencha todos os campos.');
         return;
     }
@@ -80,6 +89,9 @@ function salvareditar() {
     const projetos = JSON.parse(localStorage.getItem('projetos') || '[]');
     projetos[index] = {
         nome: nomprojeto,
+        lider: lidergrupo,
+        grupo: grupo,
+        orientador: orientador,
         descricao: descproj,
         professor: professores,
         data: projetos[index].data
@@ -112,6 +124,9 @@ function carregarEdicao() {
     if (!p) return;
 
     document.getElementById('nomprojeto').value = p.nome;
+    document.getElementById('lidergrupo').value = p.lider || '';
+    document.getElementById('grupo').value = p.grupo || '';
+    document.getElementById('orientador').value = p.orientador || '';
     document.getElementById('descproj').value = p.descricao;
     document.getElementById('professores').value = p.professor;
 }
