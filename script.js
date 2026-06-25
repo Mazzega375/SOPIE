@@ -170,6 +170,12 @@ async function carregarEdicao() {
         document.getElementById('orientador').value = p.orientador || '';
         document.getElementById('descproj').value = p.descricao;
         document.getElementById('professores').value = p.professor;
+
+        const selectCustom = document.getElementById('select-custom');
+        if (selectCustom && p.professor) {
+            selectCustom.innerHTML = p.professor + ' <span>▾</span>';
+            selectCustom.style.color = '#1f2937';
+        }
     } catch (erro) {
         console.error(erro);
     }
@@ -261,25 +267,54 @@ async function carregarProjetosProfessor() {
     }
 }
 
-function popularProfessores() {
-    const select = document.getElementById('professores');
-    if (!select) return;
+const todosProfessores = [
+    'Ebert', 'Vitor', 'Alexandre', 'Fabricio Vasconcelos'
+];
 
+function abrirDropdown() {
+    const dropdown = document.getElementById('lista-dropdown');
+    if (!dropdown) return;
+    dropdown.style.display = dropdown.style.display === 'none' ? 'block' : 'none';
+    if (dropdown.style.display === 'block') {
+        document.getElementById('busca-professor').focus();
+        filtrarProfessores();
+    }
+}
 
-// selecionar os professores disponíveis para o select //
-    const todosProfessores = [
-        'Ebert', 'Vitor', 'Alexandre', 'Fabricio Vasconcelos'
-    ];
+function filtrarProfessores() {
+    const input = document.getElementById('busca-professor');
+    const container = document.getElementById('itens-dropdown');
+    if (!input || !container) return;
 
-    todosProfessores.forEach(nome => {
-        const option = document.createElement('option');
-        option.value = nome;
-        option.textContent = nome;
-        select.appendChild(option);
+    const busca = input.value.toLowerCase();
+    const filtrados = todosProfessores.filter(p => p.toLowerCase().includes(busca));
+
+    container.innerHTML = '';
+    filtrados.forEach(nome => {
+        const item = document.createElement('div');
+        item.textContent = nome;
+        item.style = 'padding: 12px 16px; cursor:pointer; font-size:1rem;';
+        item.onmouseover = () => item.style.background = '#eff6ff';
+        item.onmouseout = () => item.style.background = '#fff';
+        item.onclick = () => {
+            document.getElementById('select-custom').innerHTML = nome + ' <span>▾</span>';
+            document.getElementById('select-custom').style.color = '#1f2937';
+            document.getElementById('professores').value = nome;
+            document.getElementById('lista-dropdown').style.display = 'none';
+        };
+        container.appendChild(item);
     });
 }
 
-popularProfessores();
+document.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('lista-dropdown');
+    const select = document.getElementById('select-custom');
+    if (!dropdown || !select) return;
+    if (!dropdown.contains(e.target) && e.target !== select) {
+        dropdown.style.display = 'none';
+    }
+});
+
 carregarProfessores();
 carregarProjetosProfessor();
 listarProjetos();
@@ -322,9 +357,9 @@ async function listarProfessoresCadastrados() {
 
 async function cadastrarProfessor() {
     const registro = document.getElementById('reg-professor').value.trim();
-    const nome    = document.getElementById('nome-professor').value.trim();
-    const email   = document.getElementById('email-professor').value.trim();
-    const senha   = document.getElementById('senha-professor').value.trim();
+    const nome = document.getElementById('nome-professor').value.trim();
+    const email = document.getElementById('email-professor').value.trim();
+    const senha = document.getElementById('senha-professor').value.trim();
 
     if (!registro || !nome || !email || !senha) {
         alert('Preencha todos os campos.');
