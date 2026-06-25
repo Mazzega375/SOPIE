@@ -2,6 +2,9 @@
 -- Sun Jun 21 19:45:03 2026
 -- Model: New Model    Version: 1.0
 -- MySQL Workbench Forward Engineering
+-- para ver as alteraões abra uma query e use: 
+-- USE SOPIE;
+-- SELECT * FROM Projeto;
 
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
